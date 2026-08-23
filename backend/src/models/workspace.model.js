@@ -1,0 +1,18 @@
+import mongoose from 'mongoose';
+
+const workspaceSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  members: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  ],
+});
+
+
+export const Workspace = mongoose.model("Workspace", workspaceSchema);
