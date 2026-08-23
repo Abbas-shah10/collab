@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+jspm_packages/
+web_modules/
+
+# Production/Build outputs
+dist/
+build/
+out/
+
+# Environment variables and secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data & Caches
+.npm
+.eslintcache
+.stylelintcache
+.cache/
+.parcel-cache
+.turbo/
+
+# Optional: TypeScript / IDE / OS Specific
+.lock-wscript
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
