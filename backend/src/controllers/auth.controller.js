@@ -7,7 +7,6 @@ import { ApiResponse } from '../utils/api-response.js'
 const generateAccessTokenAndRefreshToken = async (userId) => {
   try {
     const user = await User.findById(userId);
-
     const accessToken = user.generateAccessToken();
     const refreshToken = user.generateRefreshToken();
 
@@ -15,7 +14,7 @@ const generateAccessTokenAndRefreshToken = async (userId) => {
     await user.save({ validateBeforeSave: false });
     return { accessToken, refreshToken };
   } catch (error) {
-    throw new ApiError(404, "User not found")
+    throw new ApiError(500, "Something went wrong")
   }
 }
 
@@ -41,15 +40,9 @@ const registerUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
   })
 
-  const { accessToken, refreshToken } = await generateAccessTokenAndRefreshToken(newUser._id);
-
-  const options = {
-    httpOnly: true,
-    secure: true
-  }
 
   if (newUser) {
-    res.status(201).cookie("accessToken", accessToken, options).cookie("refreshToken", refreshToken, options).json(
+    res.status(201).json(
       new ApiResponse(201, { newUser }, "New User created Successfully")
     )
   } else {
@@ -89,7 +82,7 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 
   return res.status(200).cookie("accessToken", accessToken, options).cookie("refreshToken", refreshToken, options).json(
-    new ApiResponse(200,)
+    new ApiResponse(200, loggedInUser, "user Logged in successfully")
   )
 
 })
