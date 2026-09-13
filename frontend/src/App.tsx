@@ -1,5 +1,6 @@
+import AppRoutes from "./routes/AppRoutes";
 const App = () => {
-  return <div className="text-2xl underline">App</div>;
+  return <AppRoutes />;
 };
 
 export default App;
